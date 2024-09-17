@@ -62,7 +62,8 @@ def category_summary(request):
 # Product ----------------------------
 def product(request, pk):
     product = produit.objects.get(id=pk)
-    return render(request, 'Ecom/product.html',{'products':product})
+    quantities = range(1, 6)  # Options from 1 to 5
+    return render(request, 'Ecom/product.html',{'products':product,'quantities': quantities})
 
 
 def category(request, foo):

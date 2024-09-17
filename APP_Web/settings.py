@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tinymce',
     'whitenoise.runserver_nostatic',
+    'paypal.standard.ipn',
     
 ]
 
@@ -171,6 +172,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+
+
+#  Add paypal setting 
+# Set sandbox to true
+PAYPAL_TEST = True
+
+
+PAYPAL_RECEIVER_EMAIL = 'business@threecomp.com' # Business Sandbox account
 
 
 

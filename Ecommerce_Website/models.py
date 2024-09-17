@@ -79,7 +79,7 @@ class produit(models.Model):
         ('SALE', 'SALE'),
     ]
     name = models.CharField(max_length=100)
-    price = models.DecimalField(default=0, decimal_places=2, max_digits=6) 
+    price = models.DecimalField(default=0, decimal_places=2, max_digits=8) 
     categorie = models.ForeignKey(categories, on_delete=models.CASCADE, default=1)  # Par défaut, une catégorie
     description = HTMLField()  # Utiliser RichTextField pour les descriptions riches
     dispo = models.CharField(max_length=6, choices=DISPO_CHOICES, default='DISPO')
