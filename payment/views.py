@@ -202,51 +202,50 @@ def process_order(request):
 
 
 def billing_info(request):
-    if request.POST:
+    if request.method == "POST":
         cart = Cart(request)
         cart_products = cart.get_prods
         quantities = cart.get_quants
         totals = cart.cart_total()
 
         # Create a session with Shipping Info
-        my_shipping = request.POST
-        request.session['my_shipping'] = my_shipping
+        request.session['my_shipping'] = request.POST
 
-        # get the Host
+        # Get the Host
         host = request.get_host()
 
-        # Create Paypal Form Dictionnary
+        # Create PayPal Form Dictionary
         paypal_dict = {
-            'business' : settings.PAYPAL_RECEIVER_EMAIL,
-            'amount' : totals,
-            'item_name' : 'Service Order',
+            'business': settings.PAYPAL_RECEIVER_EMAIL,
+            'amount': totals,  # Ensure the amount has two decimal places
+            'item_name': 'Service Order',
             'no_shipping': '2',
             'invoice': str(uuid.uuid4()),
-            'currency_code': 'DH',
-            'notify_url': 'https://{}{}'.format(host,reverse("paypal-ipn")),
-            'return_url': 'https://{}{}'.format(host,reverse("payment_success")),
-            'cancel_return': 'https://{}{}'.format(host,reverse("payment_failed")),
+            'currency_code': 'USD',  # Use Moroccan Dirham
+            'notify_url': 'https://{}{}'.format(host, reverse("paypal-ipn")),
+            'return_url': 'https://{}{}'.format(host, reverse("payment_success")),
+            'cancel_return': 'https://{}{}'.format(host, reverse("payment_failed")),
         }
 
         paypal_form = PayPalPaymentsForm(initial=paypal_dict)
 
-        # Check to see if user is logged in
-        if request.user.is_authenticated:
-            # Get the Billing Form
-            billing_form = PaymentForm()
-            return render(request, 'payment/billing_info.html',{'paypal_form':paypal_form,'cart_products': cart_products,'quantities': quantities,'totals': totals,'shipping_info': request.POST, 'billing_form': billing_form})
-        else:
-            # Not Logged in
-            # Get the Billing Form        
-            return render(request, 'payment/billing_info.html',{'paypal_form':paypal_form,'cart_products': cart_products,'quantities': quantities,'totals': totals,'shipping_info': request.POST, 'billing_form': billing_form})
-
-
-
-        shipping_form = request.POST
-        return render(request, 'payment/billing_info.html',{'cart_products': cart_products,'quantities': quantities,'totals': totals,'shipping_form': shipping_form})
-
+        # Get the Billing Form
+        billing_form = PaymentForm() if request.user.is_authenticated else None
+        
+        return render(
+            request, 
+            'payment/billing_info.html',
+            {
+                'paypal_form': paypal_form,
+                'cart_products': cart_products,
+                'quantities': quantities,
+                'totals': totals,
+                'shipping_info': request.POST,
+                'billing_form': billing_form,
+            }
+        )
     else:
-        messages.success(request, "Access Denied")
+        messages.error(request, "Access Denied")
         return redirect('base')
     
     
