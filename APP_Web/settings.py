@@ -46,7 +46,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 INSTALLED_APPS = [
     'Ecommerce_Website.apps.EcommerceWebsiteConfig',
-    'cart.apps.CartConfig',
+    'cart',
     'payment.apps.PaymentConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -89,6 +89,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'APP_Web.wsgi.application'
 
