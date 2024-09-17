@@ -18,7 +18,8 @@ def cart_summary(request):
         'quantities': quantities,
         'totals': totals,
     }
-    return render(request, "cart/cart_summary.html", context)
+    return render(request, 'cart/cart_summary.html', context)
+
 
 
 
