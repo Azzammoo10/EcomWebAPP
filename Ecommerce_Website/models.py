@@ -84,6 +84,9 @@ class produit(models.Model):
     description = HTMLField()  # Utiliser RichTextField pour les descriptions riches
     dispo = models.CharField(max_length=6, choices=DISPO_CHOICES, default='DISPO')
     image1 = models.ImageField(upload_to='produit/')
+    image2 = models.ImageField(upload_to='produit/', blank=True, null=True)
+    image3 = models.ImageField(upload_to='produit/', blank=True, null=True)
+    image4 = models.ImageField(upload_to='produit/', blank=True, null=True)
     # Add Sale Stuff
     is_sale = models.BooleanField(default=False)
     sale_price = models.DecimalField(default=0, decimal_places=2, max_digits=6) 
@@ -92,7 +95,7 @@ class produit(models.Model):
         return self.name
     
     class Meta:
-        verbose_name_plural = 'Les Produits'
+        verbose_name_plural = 'Produit et Service'
     
     
 

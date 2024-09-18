@@ -45,12 +45,21 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownCategories">
                         <li><a class="dropdown-item" href="{% url 'category_summary' %}"><i class="bi bi-box-seam"></i> All Products</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Pc-Portable' %}"><i class="bi bi-laptop"></i> Materiel</a></li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item" href="#"><i class="bi bi-laptop"></i> Materiele <i class="bi bi-caret-right-fill"></i> </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'category' 'Pc-Portable-Bureau' %}"><i class="bi bi-laptop"></i> PC-Portable</a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'Filtres confidentialité 3M' %}"><i class="bi bi-shield-check"></i> 	Filtres confidentialité 3M</a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'Ecran Interactif' %}"><i class="bi bi-aspect-ratio"></i> Ecran Interactif</a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'Imprimante' %}"><i class="bi bi-printer"></i> Imprimante</a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'Service-SECURITY' %}"><i class="bi bi-aspect-ratio-fill"></i> RFID</a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown-submenu">
                             <a class="dropdown-item" href="#"><i class="bi bi-cpu"></i> Service <i class="bi bi-caret-right-fill"></i> </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'category' 'Sevice-DATA' %}"><i class="bi bi-database"></i> Data</a></li>
-                                <li><a class="dropdown-item" href="{% url 'category' 'Service-IA' %}"><i class="bi bi-robot"></i> IA</a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'Sevice-DATA' %}"><i class="bi bi-database-check"></i> Data</a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'Service-IA' %}"><i class="bi bi-robot"> </i>  IA</a></li>
                                 <li><a class="dropdown-item" href="{% url 'category' 'Service-SECURITY' %}"><i class="bi bi-shield-lock"></i> Cyber</a></li>
                             </ul>
                         </li>
