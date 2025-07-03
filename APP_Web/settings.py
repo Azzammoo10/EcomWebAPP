@@ -25,21 +25,26 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#v+88&+#17gv^y7_!8qam*)sf9p#^sr^13%f3wsk6ef6^l7ac+'
+#SECRET_KEY = 'django-insecure-#v+88&+#17gv^y7_!8qam*)sf9p#^sr^13%f3wsk6ef6^l7ac+'
+SECRET_KEY = os.getenv('SECRET_KEY', 'insecure-dev-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = [
+
+#ALLOWED_HOSTS = [
     'azzamm5-appwebdjangocompany-production.up.railway.app',
     'localhost',
     '127.0.0.1',
     'https://azzamm5-appwebdjangocompany-production.up.railway.app',  # Only if you have specific needs
 ]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
-CSRF_TRUSTED_ORIGINS = [
+#CSRF_TRUSTED_ORIGINS = [
     'https://azzamm5-appwebdjangocompany-production.up.railway.app',  # Correct
 ]
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',')
 
 
 # Application definition
